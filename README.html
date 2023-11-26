@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Quick Start</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h2 id="quick-start">Quick Start</h2>
+<ol>
+<li><code>git clone</code> the repo and <code>cd</code> into the project</li>
+<li><code>python3 -m venv env</code> to initialize the virtual environment</li>
+<li><code>source env/bin/activate</code> to activate the virtual environment</li>
+<li><code>pip install -r requirements.txt</code> to install project dependencies</li>
+<li><code>python main.py input1.json</code> to start the program</li>
+<li>The result will be written to <code>output.txt</code></li>
+</ol>
+<h2 id="overview">Overview</h2>
+<h3 id="important-files">Important Files</h3>
+<p>The following important files are included in this project:</p>
+<ul>
+<li>
+<p><code>main.py</code>: Main program to be executed from the command line with: <code>python main.py input.json</code></p>
+</li>
+<li>
+<p><code>input1.json</code>: Input file containing a list of branch processes and customer processes with for Monotonic Writes</p>
+</li>
+<li>
+<p><code>input2.json</code>: Input file containing a list of branch processes and customer processes with to Read your Writes Cosistency</p>
+</li>
+<li>
+<p><code>output.txt</code>: The output file containing each Customer's <code>recvMsg</code> output. This file will be overwritten each time the program is ran.</p>
+</li>
+<li>
+<p><code>branch.proto</code>: Protocol buffer file defining RPC messages &amp; services. This file has already been compiled to produce the <code>branch_pb2.py</code> &amp; <code>branch_pb2_grpc.py</code> files.</p>
+</li>
+<li>
+<p><code>Branch.py</code>: Branch class served as a gRPC server to process customer transactions and propagate them to other branches.</p>
+</li>
+<li>
+<p><code>Customer.py</code>: Customer class with gRPC client branch stub to send transaction requests to its corresponding bank branch.</p>
+</li>
+</ul>
+<h3 id="input-file">Input File</h3>
+<p>The input file should be in <code>.json</code> format and is passed to the program via a command line argument:</p>
+<pre><code class="language-sh">python main.py input.json
+</code></pre>
+<p>The following <code>input.json</code> file is included from the Project instructions:</p>
+<pre><code class="language-json"><span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;customer&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;events&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+      <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;interface&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;query&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;money&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">400</span> <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;customer&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;events&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+      <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;interface&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deposit&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;money&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">170</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;interface&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;query&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;money&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">400</span> <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;customer&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;events&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+      <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;interface&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;withdraw&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;money&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">70</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;interface&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;query&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;money&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">400</span> <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;branch&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;balance&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">400</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;branch&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;balance&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">400</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;branch&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;balance&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">400</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">]</span>
+
+</code></pre>
+<h3 id="python-environment">Python Environment</h3>
+<p>Python 3 is required for this project. <code>venv</code> is used to sandbox the Python project and dependencies in a virtual environment.</p>
+<p>In order to use the included Python version and project dependency files, the virtual environment must be initialized and activated before the program is ran.</p>
+<p>From the project root:</p>
+<pre><code class="language-sh"><span class="hljs-comment"># Initialize the Python virtual environment</span>
+python3 -m venv <span class="hljs-built_in">env</span>
+
+<span class="hljs-comment"># Activate the virtual environment</span>
+<span class="hljs-built_in">source</span> <span class="hljs-built_in">env</span>/bin/activate
+
+<span class="hljs-comment"># Install project dependencies in the virtual environment</span>
+pip install -r requirements.txt
+</code></pre>
+<p>For more information, please refer to the <a href="https://docs.python.org/3/tutorial/venv.html">12. Virtual Environments and Packages</a> page of the official Python documentation.</p>
+
+        
+        
+    </body>
+    </html>

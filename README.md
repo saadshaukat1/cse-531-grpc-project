@@ -1,4 +1,39 @@
+## Grpc Banking System 
 
+This project is a demonstration of a gRPC-based system, simulating a banking system with branches and customers. It uses Python's multiprocessing and concurrent futures to handle multiple clients and servers.
+
+## Files
+
+- `main.py`: This is the main file where the gRPC servers and clients are started.
+- `branch_pb2_grpc.py`: This file contains the gRPC stubs and services for the Branch.
+- `Branch.py`: This file defines the Branch class, which represents a branch in the banking system.
+- `Customer.py`: This file defines the Customer class, which represents a customer in the banking system.
+
+## How it works
+
+The `main.py` file contains two main functions: `serveBranch` and `serveCustomer`.
+
+### serveBranch
+
+This function starts a gRPC server for a branch. It takes a `Branch` object as an argument. The `Branch` object is expected to have an `id` attribute and a `createStubs` method.
+
+The `createStubs` method is called to initialize the gRPC stubs for the branch. Then, a gRPC server is created with a thread pool executor, and the branch is added as a servicer to the server. The server is started on a port that is calculated based on the branch's id, and then it waits for termination.
+
+### serveCustomer
+
+This function starts a gRPC client for a customer. It takes a `Customer` object as an argument. The `Customer` object is expected to have a `createStub` and an `executeEvents` method.
+
+The `createStub` method is called to initialize the gRPC stub for the customer. Then, the `executeEvents` method is called to start the customer's interactions with the branches.
+
+## Inputs and Outputs
+
+The inputs to this system are the `Branch` and `Customer` objects that are passed to the `serveBranch` and `serveCustomer` functions, respectively. These objects should be created and initialized with the necessary data before being passed to these functions.
+
+The outputs of this system are the interactions between the customers and branches, which are handled through gRPC calls. The results of these interactions are not explicitly returned by the `serveBranch` and `serveCustomer` functions, but they can be observed through the gRPC calls that are made.
+
+## How to Run
+
+To run this project, you need to create and initialize `Branch` and `Customer` objects, and then pass them to the `serveBranch` and `serveCustomer` functions in `main.py`. The exact details of how to do this will depend on the specifics of your project setup.
 
 
 

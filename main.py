@@ -37,6 +37,17 @@ def serveCustomer(customer):
 
 # Parse JSON & create objects/processes
 def createProcesses(processes):
+    """
+    Creates and manages branch and customer processes.
+
+    Args:
+        processes (list): A list of dictionaries representing the processes.
+
+    Returns:
+        None
+    """
+    # Rest of the code...
+def createProcesses(processes):
     # List of Customer objects
     customers = []
     # List of Customer processes
