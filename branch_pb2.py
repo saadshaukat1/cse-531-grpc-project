@@ -19,10 +19,56 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x62ranch.proto\":\n\nMsgRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x11\n\tinterface\x18\x02 \x01(\t\x12\r\n\x05money\x18\x03 \x01(\x05\"?\n\x0bMsgResponse\x12\x11\n\tinterface\x18\x01 \x01(\t\x12\x0e\n\x06result\x18\x02 \x01(\t\x12\r\n\x05money\x18\x03 \x01(\x05\x32\x63\n\x06\x42ranch\x12*\n\x0bMsgDelivery\x12\x0b.MsgRequest\x1a\x0c.MsgResponse\"\x00\x12-\n\x0eMsgPropagation\x12\x0b.MsgRequest\x1a\x0c.MsgResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0c\x62ranch.proto\">\n\x0eWriteOperation\x12\x11\n\tinterface\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x05\x12\r\n\x05money\x18\x03 \x01(\x05\"]\n\nMsgRequest\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x11\n\tinterface\x18\x02 \x01(\t\x12\r\n\x05money\x18\x03 \x01(\x05\x12!\n\x08writeSet\x18\x04 \x03(\x0b\x32\x0f.WriteOperation\"?\n\x0bMsgResponse\x12\x11\n\tinterface\x18\x01 \x01(\t\x12\x0e\n\x06result\x18\x02 \x01(\t\x12\r\n\x05money\x18\x03 \x01(\x05\x32\x63\n\x06\x42ranch\x12*\n\x0bMsgDelivery\x12\x0b.MsgRequest\x1a\x0c.MsgResponse\"\x00\x12-\n\x0eMsgPropagation\x12\x0b.MsgRequest\x1a\x0c.MsgResponse\"\x00\x62\x06proto3'
 )
 
 
+
+
+_WRITEOPERATION = _descriptor.Descriptor(
+  name='WriteOperation',
+  full_name='WriteOperation',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='interface', full_name='WriteOperation.interface', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='id', full_name='WriteOperation.id', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='money', full_name='WriteOperation.money', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=16,
+  serialized_end=78,
+)
 
 
 _MSGREQUEST = _descriptor.Descriptor(
@@ -54,6 +100,13 @@ _MSGREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='writeSet', full_name='MsgRequest.writeSet', index=3,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -66,8 +119,8 @@ _MSGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=16,
-  serialized_end=74,
+  serialized_start=80,
+  serialized_end=173,
 )
 
 
@@ -112,13 +165,22 @@ _MSGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=76,
-  serialized_end=139,
+  serialized_start=175,
+  serialized_end=238,
 )
 
+_MSGREQUEST.fields_by_name['writeSet'].message_type = _WRITEOPERATION
+DESCRIPTOR.message_types_by_name['WriteOperation'] = _WRITEOPERATION
 DESCRIPTOR.message_types_by_name['MsgRequest'] = _MSGREQUEST
 DESCRIPTOR.message_types_by_name['MsgResponse'] = _MSGRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+WriteOperation = _reflection.GeneratedProtocolMessageType('WriteOperation', (_message.Message,), {
+  'DESCRIPTOR' : _WRITEOPERATION,
+  '__module__' : 'branch_pb2'
+  # @@protoc_insertion_point(class_scope:WriteOperation)
+  })
+_sym_db.RegisterMessage(WriteOperation)
 
 MsgRequest = _reflection.GeneratedProtocolMessageType('MsgRequest', (_message.Message,), {
   'DESCRIPTOR' : _MSGREQUEST,
@@ -143,8 +205,8 @@ _BRANCH = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=141,
-  serialized_end=240,
+  serialized_start=240,
+  serialized_end=339,
   methods=[
   _descriptor.MethodDescriptor(
     name='MsgDelivery',

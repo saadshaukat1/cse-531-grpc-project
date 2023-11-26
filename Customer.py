@@ -11,6 +11,7 @@ class Customer:
     def __init__(self, id, events):
         self.id = id
         self.events = events
+        self.writeSet = list()
         self.recvMsg = list()
         self.stub = None
 
@@ -23,9 +24,18 @@ class Customer:
     # Send gRPC request for each event
     def executeEvents(self):
         for event in self.events:
+             # Check if the 'money' key is in the event dictionary
+            if 'money' not in event:
+                # If not, add it with a default value
+                event['money'] = 0
+                
             # Sleep 3 seconds for 'query' events
             if event["interface"] == "query":
                 sleep(3)
+
+            # Add operation to writeSet for 'deposit' and 'withdraw' events
+            if event["interface"] in ["deposit", "withdraw"]:
+                self.writeSet.append(event)
 
             # Send request to Branch server
             response = self.stub.MsgDelivery(

@@ -1,9 +1,16 @@
 syntax = "proto3";
 
+message WriteOperation {
+    string interface = 1;
+    int32 id = 2;
+    int32 money = 3;
+}
+
 message MsgRequest {
 	int32 id = 1;
 	string interface = 2;
 	int32 money = 3;
+	repeated WriteOperation writeSet = 4; 
 }
 
 message MsgResponse {

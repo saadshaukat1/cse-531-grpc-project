@@ -37,7 +37,7 @@ The input file should be in `.json` format and is passed to the program via a co
 python main.py input.json
 ```
 
-The following `input.json` file is included from the CSE 531 gRPC Project instructions:
+The following `input.json` file is included from the Project instructions:
 
 ```json
 [
