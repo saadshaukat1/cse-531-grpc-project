@@ -1,4 +1,4 @@
-<h1>CSE 531: gRPC Project</h1>
+
 
 
 
@@ -8,7 +8,7 @@
 2. `python3 -m venv env` to initialize the virtual environment
 3. `source env/bin/activate` to activate the virtual environment
 4. `pip install -r requirements.txt` to install project dependencies
-5. `python main.py input.json` to start the program
+5. `python main.py input1.json` to start the program
 6. The result will be written to `output.txt`
 
 ## Overview
@@ -19,7 +19,9 @@ The following important files are included in this project:
 
 * `main.py`: Main program to be executed from the command line with: `python main.py input.json`
 
-* `input.json`: Input file containing a list of branch processes and customer processes with transaction events.
+* `input1.json`: Input file containing a list of branch processes and customer processes with for Monotonic Writes
+
+* `input2.json`: Input file containing a list of branch processes and customer processes with to Read your Writes Cosistency
 
 * `output.txt`: The output file containing each Customer's `recvMsg` output. This file will be overwritten each time the program is ran.
 

@@ -1,4 +1,47 @@
-{'id': 1, 'recv': [{'interface': 'deposit', 'result': 'success'}, {'interface': 'withdraw', 'result': 'success'}, {'interface': 'query', 'result': 'success', 'money': 0}]}
-{'id': 1, 'recv': [{'interface': 'deposit', 'result': 'success'}, {'interface': 'withdraw', 'result': 'success'}, {'interface': 'query', 'result': 'success', 'money': 400}]}
-{'id': 1, 'recv': [{'interface': 'deposit', 'result': 'success'}, {'interface': 'query', 'result': 'success', 'money': 0}]}
-{'id': 1, 'recv': [{'interface': 'deposit', 'result': 'success'}, {'interface': 'query', 'result': 'success', 'money': 400}]}
+[
+    {
+    }
+        "id": {
+            "id": 1,
+            "recv": {}
+                {
+                    "interface": "deposit",
+                    "result": "success"
+                },
+                {
+                    "interface": "query",
+                    "result": "success",
+                    "money": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": 1,
+        "recv": [
+            {
+                "interface": "deposit",
+                "result": "success"
+            },
+            {
+                "interface": "query",
+                "result": "success",
+                "money": 0
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "recv": [
+            {
+                "interface": "deposit",
+                "result": "success"
+            },
+            {
+                "interface": "query",
+                "result": "success",
+                "money": 400
+            }
+        ]
+    }
+]
