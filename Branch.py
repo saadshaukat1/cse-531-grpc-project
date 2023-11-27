@@ -1,3 +1,18 @@
+# This Python code is part of a distributed banking system that uses gRPC for communication between different branches. Each branch is represented by an instance of the `Branch` class, which is a gRPC service defined in the `branch_pb2_grpc` module.
+
+# The `Branch` class has several attributes, including its `id`, `balance`, a list of other `branches`, a list of gRPC client `stubList` for communication with other branches, a list of received messages `recvMsg`, a `local_cache` dictionary for caching write operations, and a `last_write_time` dictionary for tracking the time of the last write operation by each process.
+
+# The `createStubs` method is used to set up gRPC channels and client stubs for each branch in the system, excluding the current branch. This allows the current branch to communicate with other branches.
+
+# The `MsgDelivery` and `MsgPropagation` methods are gRPC service methods that handle incoming `MsgRequest` messages from customers and other branches, respectively. Both methods delegate the processing of the message to the `ProcessMsg` method.
+
+# The `ProcessMsg` method handles the received message and generates a `MsgResponse`. It first checks if the requested operation is valid. If the operation is a query, it checks if there's a locally cached value for this process and returns it. If the operation is a deposit or withdrawal, it updates the branch's balance and the last write time for this process. If the operation was initiated by a customer (i.e., `propagate` is `True`), it propagates the operation to other branches.
+
+# The `Propagate_Withdraw` and `Propagate_Deposit` methods are used to propagate withdrawal and deposit operations to other branches. They do this by calling the `MsgPropagation` method on each client stub in the `stubList`.
+
+# This code demonstrates the use of gRPC for building a distributed system, and the use of local caching and timestamping for ensuring consistency in the system.
+
+
 from concurrent import futures
 import time
 

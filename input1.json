@@ -5,7 +5,7 @@
         "events": [
             {
                 "interface": "deposit",
-                "money": 400,
+                "money": 600,
                 "id": 1,
                 "dest": 1
             },
